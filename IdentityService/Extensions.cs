@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IdentityService.Authorization;
+using IdentityService.Enums;
 using IdentityService.Provider;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -40,8 +43,16 @@ namespace IdentityService
                         return Task.CompletedTask;
                     }
                 };
+
             });
-            services.AddAuthorization();
+             services.AddScoped<IPermissionService, PermissionsService>();
+             services.AddSingleton<IAuthorizationHandler, PermissionHandler>();
+             services.AddAuthorization();
+        }
+        public static IEndpointConventionBuilder RequirePermissions<TBuilder>
+        (this TBuilder builder, params PermissionsEnum[] permissions) where TBuilder : IEndpointConventionBuilder
+        {
+            return builder.RequireAuthorization(policy => policy.AddRequirements(new PermissionRequirement(permissions)));
         }
     }
 }

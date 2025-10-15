@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IdentityService.Contracts;
+using IdentityService.Enums;
 using IdentityService.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,7 +26,15 @@ namespace IdentityService.Repositories
         {
             _context.Users.Add(users);
             await _context.SaveChangesAsync();
-            return users;          
+            return users;
+        }
+        public async Task<HashSet<PermissionsEnum>> GetUserPermissions(Guid userId)
+        {
+            var roles = await _context.Users.AsNoTracking().Include(x => x.Roles).ThenInclude(x => x.Permissions).Where(x => x.Id == userId).Select(x => x.Roles).ToListAsync();
+            return roles.SelectMany(x => x)
+            .SelectMany(x => x.Permissions)
+            .Select(x => (PermissionsEnum)x.Id)
+            .ToHashSet();
         }
     }
 }

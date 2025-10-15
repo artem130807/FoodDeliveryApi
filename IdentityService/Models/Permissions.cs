@@ -9,6 +9,7 @@ namespace IdentityService.Models
     public class Permissions
     {
         public int Id { get; set; }
-        public PermissionsEnum[] permissionsEnum { get; set; } 
+        public string Name { get; set; } 
+        public ICollection<Roles> Roles{ get; set; }
     }
 }

@@ -10,6 +10,9 @@ namespace IdentityService.Models
     public class Roles
     {
         public int Id { get; set; }
-        public  RolesEnum rolesEnum { get; set; }
+        public string Name { get; set; }
+        public ICollection<Users> Users { get; set; } = [];
+        public ICollection<Permissions> Permissions { get; set; } = [];
+
     }
 }

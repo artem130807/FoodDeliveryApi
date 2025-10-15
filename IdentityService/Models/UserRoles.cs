@@ -7,6 +7,7 @@ namespace IdentityService.Models
 {
     public class UserRoles
     {
-        public int Id { get; set; }
+        public Guid UserId { get; set; }
+        public int RoleId { get; set; }
     }
 }

@@ -170,3 +170,4 @@ E:\AAAAA1111222C#\Pet projects\FoodDeliveryApi\IdentityService\bin\Debug\net9.0\
 E:\AAAAA1111222C#\Pet projects\FoodDeliveryApi\IdentityService\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 E:\AAAAA1111222C#\Pet projects\FoodDeliveryApi\IdentityService\bin\Debug\net9.0\AutoMapper.dll
 E:\AAAAA1111222C#\Pet projects\FoodDeliveryApi\IdentityService\bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\AAAAA1111222C#\Pet projects\FoodDeliveryApi\IdentityService\obj\Debug\net9.0\IdentityService.sourcelink.json
