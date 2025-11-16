@@ -12,9 +12,13 @@ namespace IdentityService.Mapper
     {
         public MapperProfile()
         {
+            //Авторизация, Аутентификация
             CreateMap<Users, DtoUser>();
             CreateMap<Users, DtoUserLoginRequest>();
             CreateMap<Users, DtoUserRegister>();
+            //Email проверка
+            CreateMap<EmailVerification, SendVerificationRequest>();
+            CreateMap<EmailVerification, VerifyCodeRequest>(); 
         }
     }
 }

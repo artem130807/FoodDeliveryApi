@@ -21,6 +21,8 @@ builder.Services.Configure<JwtOptions>(configuration.GetSection(nameof(JwtOption
 
 // База данных и AutoMapper
 builder.Services.AddDb(configuration);
+builder.Services.AddHttpClient();
+builder.Services.AddHttpClient<ICityValidationService, CityValidationService>();
 builder.Services.AddAutoMapper(typeof(MapperProfile));
 builder.Services.AddControllers();
 
@@ -39,9 +41,15 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UsersRepository>();
 builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 
+//Сервисы отправки Email Кодов ||Проверки
+builder.Services.AddScoped<IEmailVerficationService, EmailVerificationService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IDnsEmailValidator, DnsEmailValidator>();
+builder.Services.AddScoped<IPasswordValidatorService, PasswordValidatorService>();
+builder.Services.AddScoped<ICityValidationService, CityValidationService>();
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
-
 // Configure the HTTP pipeline
 if (app.Environment.IsDevelopment())
 {

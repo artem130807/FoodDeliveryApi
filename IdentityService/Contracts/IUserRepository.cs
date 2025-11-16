@@ -12,5 +12,7 @@ namespace IdentityService.Contracts
         Task<Users> Register(Users users);
         Task<Users> GetUserByEmail(string email);
         Task<HashSet<PermissionsEnum>> GetUserPermissions(Guid userId);
+        Task UpdatePasswordHash(string email, string password);
+        Task<string> UpdateCity(Guid Id, string City);
     }
 }

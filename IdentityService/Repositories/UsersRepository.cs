@@ -36,5 +36,20 @@ namespace IdentityService.Repositories
             .Select(x => (PermissionsEnum)x.Id)
             .ToHashSet();
         }
+
+        public async Task UpdatePasswordHash(string email, string password)
+        {
+            await _context.Users.Where(x => x.Email == email)
+            .ExecuteUpdateAsync(x => x.SetProperty(x => x.PasswordHash, password));
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<string> UpdateCity(Guid Id, string City)
+        {
+            await _context.Users.Where(x => x.Id == Id)
+            .ExecuteUpdateAsync(x => x.SetProperty(x => x.City, City));
+            await _context.SaveChangesAsync();
+            return City;
+        }
     }
 }

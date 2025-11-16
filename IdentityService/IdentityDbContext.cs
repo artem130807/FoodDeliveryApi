@@ -17,6 +17,7 @@ namespace IdentityService
         public DbSet<Permissions> Permissions { get; set; }
         public DbSet<RolePermissionsEntity> RolePermissions { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
+        public DbSet<EmailVerification> EmailVerifications { get; set; }
           
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,6 +25,7 @@ namespace IdentityService
             modelBuilder.ApplyConfiguration(new RolesConfigurations());
             modelBuilder.ApplyConfiguration(new PermissionsConfigurations());
             modelBuilder.ApplyConfiguration(new RolesPermissionsCofigurations(authOptions.Value));
+            modelBuilder.ApplyConfiguration(new EmailVerificationConfigurations());
             base.OnModelCreating(modelBuilder);
         }
     }

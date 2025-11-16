@@ -17,7 +17,7 @@ namespace IdentityService.Configurations
             builder.Property(x => x.Name);
             builder.Property(x => x.Email);
             builder.Property(X => X.PasswordHash);
-            
+            builder.Property(x => x.City).IsRequired();
             builder.HasMany(x => x.Roles).WithMany(x => x.Users).UsingEntity<UserRoles>
             (x => x.HasOne<Roles>().WithMany().HasForeignKey(x => x.RoleId),
             x => x.HasOne<Users>().WithMany().HasForeignKey(x => x.UserId)
